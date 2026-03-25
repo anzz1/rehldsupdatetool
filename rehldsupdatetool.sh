@@ -27,16 +27,16 @@ esac
 
 if [ ! -z "$MOD" ]; then
 	if command -v unzip 2>&1 >/dev/null; then
-    	TOOL="unzip -oq mod_"$GAME".zip -d "$HLDS_DIR""
-    elif command -v bsdtar 2>&1 >/dev/null; then
-    	TOOL="bsdtar -C "$HLDS_DIR" -xf mod_"$GAME".zip"
-    elif command -v 7z 2>&1 >/dev/null; then
-    	TOOL="7z x -y -aoa -bso0 -bsp0 -o"$HLDS_DIR" mod_"$GAME".zip"
-    elif command -v 7za 2>&1 >/dev/null; then
-    	TOOL="7za x -y -aoa -bso0 -bsp0 -o"$HLDS_DIR" mod_"$GAME".zip"
-    else
-    	echo "rehldsupdatetool: No unzip tool found, need one of: 'unzip', 'bsdtar', or '7z'. Install one of them and re-run rehldsupdatetool."
-    	exit 1
+		TOOL="unzip -oq mod_"$GAME".zip -d "$HLDS_DIR""
+	elif command -v bsdtar 2>&1 >/dev/null; then
+		TOOL="bsdtar -C "$HLDS_DIR" -xf mod_"$GAME".zip"
+	elif command -v 7z 2>&1 >/dev/null; then
+		TOOL="7z x -y -aoa -bso0 -bsp0 -o"$HLDS_DIR" mod_"$GAME".zip"
+	elif command -v 7za 2>&1 >/dev/null; then
+		TOOL="7za x -y -aoa -bso0 -bsp0 -o"$HLDS_DIR" mod_"$GAME".zip"
+	else
+		echo "rehldsupdatetool: No unzip tool found, need one of: 'unzip', 'bsdtar', or '7z'. Install one of them and re-run rehldsupdatetool."
+		exit 1
 	fi
 fi
 
