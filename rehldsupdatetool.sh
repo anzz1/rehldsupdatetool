@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "rehldsupdatetool v0.0.1"
+echo "rehldsupdatetool v0.0.2"
 
 if [ -z "$1" ] || [ -z "$2" ]; then
 	echo "Usage: ./rehldsupdatetool.sh <game> <directory>"
@@ -19,7 +19,7 @@ case $GAME in
 		MOD=1
 		;;
 	*)
-		echo "rehldsupdatetool: "$1": Invalid game"
+		echo "rehldsupdatetool: Invalid game: "$1""
 		echo "rehldsupdatetool: Valid games are: cstrike, czero, dmc, dod, gearbox, ricochet, tfc, valve"
 		exit 1
 		;;
@@ -41,12 +41,12 @@ if [ ! -z "$MOD" ]; then
 fi
 
 if [ -z "$HLDS_DIR" ]; then
-	echo "rehldsupdatetool: "$2": Invalid directory"
+	echo "rehldsupdatetool: Invalid directory: "$2""
 	exit 1
 fi
 
 if ! mkdir -p "$HLDS_DIR"; then
-	echo "rehldsupdatetool: "$HLDS_DIR": Could not create directory"
+	echo "rehldsupdatetool: Could not create directory: "$HLDS_DIR""
 	exit 1
 fi
 
@@ -55,28 +55,28 @@ echo "Installing to: "$HLDS_DIR""
 if command -v wget 2>&1 >/dev/null; then
 	if [ ! -s hlds_linux_8684.tar.gz ]; then
 		echo "Downloading hlds_linux_8684.tar.gz ..." && \
-		wget -q --show-progress -O hlds_linux_8684.tar.gz http://taco.cab/files/rehlds/hlds_linux_8684.tar.gz
+		wget -q --show-progress -O hlds_linux_8684.tar.gz http://ftp.taco.cab/rehlds/hlds_linux_8684.tar.gz
 	fi && \
 	echo "Downloading rehlds_linux.tar.gz ..." && \
-	wget -q --show-progress -O rehlds_linux.tar.gz http://taco.cab/files/rehlds/rehlds_linux.tar.gz && \
+	wget -q --show-progress -O rehlds_linux.tar.gz http://ftp.taco.cab/rehlds/rehlds_linux.tar.gz && \
 	echo "Downloading versioninfo.txt ..." && \
-	wget -q --show-progress -O versioninfo.txt http://taco.cab/files/rehlds/versioninfo.txt && \
+	wget -q --show-progress -O versioninfo.txt http://ftp.taco.cab/rehlds/versioninfo.txt && \
 	if [ ! -z "$MOD" ]; then
 		echo "Downloading mod_"$GAME".zip ..." && \
-		wget -q --show-progress -O mod_"$GAME".zip http://taco.cab/files/rehlds/mod_"$GAME".zip
+		wget -q --show-progress -O mod_"$GAME".zip http://ftp.taco.cab/rehlds/mod_"$GAME".zip
 	fi
 elif command -v curl 2>&1 >/dev/null; then
 	if [ ! -s hlds_linux_8684.tar.gz ]; then
 		echo "Downloading hlds_linux_8684.tar.gz ..." && \
-		curl -f -L -# -o hlds_linux_8684.tar.gz http://taco.cab/files/rehlds/hlds_linux_8684.tar.gz
+		curl -f -L -# -o hlds_linux_8684.tar.gz http://ftp.taco.cab/rehlds/hlds_linux_8684.tar.gz
 	fi && \
 	echo "Downloading rehlds_linux.tar.gz ..." && \
-	curl -f -L -# -o rehlds_linux.tar.gz http://taco.cab/files/rehlds/rehlds_linux.tar.gz && \
+	curl -f -L -# -o rehlds_linux.tar.gz http://ftp.taco.cab/rehlds/rehlds_linux.tar.gz && \
 	echo "Downloading versioninfo.txt ..." && \
-	curl -f -L -# -o versioninfo.txt http://taco.cab/files/rehlds/versioninfo.txt && \
+	curl -f -L -# -o versioninfo.txt http://ftp.taco.cab/rehlds/versioninfo.txt && \
 	if [ ! -z "$MOD" ]; then
 		echo "Downloading mod_"$GAME".zip ..." && \
-		curl -f -L -# -o mod_"$GAME".zip http://taco.cab/files/rehlds/mod_"$GAME".zip
+		curl -f -L -# -o mod_"$GAME".zip http://ftp.taco.cab/rehlds/mod_"$GAME".zip
 	fi
 else
 	echo "rehldsupdatetool: Neither 'wget' or 'curl' found. Install either of them and re-run rehldsupdatetool."
