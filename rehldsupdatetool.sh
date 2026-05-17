@@ -32,6 +32,8 @@ if [ ! -z "$MOD" ]; then
 		TOOL="bsdtar -C "$HLDS_DIR" -xf mod_"$GAME".zip"
 	elif command -v 7z 2>&1 >/dev/null; then
 		TOOL="7z x -y -aoa -bso0 -bsp0 -o"$HLDS_DIR" mod_"$GAME".zip"
+	elif command -v 7zz 2>&1 >/dev/null; then
+		TOOL="7zz x -y -aoa -bso0 -bsp0 -o"$HLDS_DIR" mod_"$GAME".zip"
 	elif command -v 7za 2>&1 >/dev/null; then
 		TOOL="7za x -y -aoa -bso0 -bsp0 -o"$HLDS_DIR" mod_"$GAME".zip"
 	else
